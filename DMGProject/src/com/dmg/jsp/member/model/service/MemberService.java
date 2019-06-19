@@ -28,7 +28,6 @@ public class MemberService {
 	public Member selectMember(Member m) throws MemberException {
 		
 		con = getConnection();
-		
 		Member result = mDao.selectMember(con, m);
 		
 		
@@ -59,10 +58,10 @@ public class MemberService {
 		return result;
 	}
 
-	public int deleteMember(String userId) throws MemberException {
+	public int deleteMember(String userId, String userPwd) throws MemberException {
 		
 		con = getConnection();
-		int result = mDao.deleteMember(con, userId);
+		int result = mDao.deleteMember(con, userId, userPwd);
 		
 		if(result > 0) commit(con);
 		else rollback(con);
@@ -84,6 +83,45 @@ public class MemberService {
 		con = getConnection();
 		int result = mDao.nickDupCheck(con, nick);
 		close(con);
+		return result;
+	}
+
+	public Member memberLogin(Member m) {
+		con = getConnection();
+		
+		Member result = mDao.passwordcheck(con, m);
+		
+		
+		close(con);
+		
+		if(result == null) {
+			System.out.println("회원 아이디나 비밀번호가 올바르지 않습니다.");
+		}
+		
+		
+		return result;
+	}
+
+	public int passwordupdate(Member m) {
+		con = getConnection();
+		
+		int result = mDao.passwordupdate(con, m);
+		
+		if(result > 0 ) {
+			commit(con);
+		}
+		else {
+			rollback(con);
+		}
+		close(con);
+		
+		return result;
+	}
+
+	public String findid(String userName, String email) throws MemberException {
+		con = getConnection();
+		
+		String result = mDao.findid(con, userName, email);
 		return result;
 	}
 

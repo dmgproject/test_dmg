@@ -1,0 +1,27 @@
+
+ 웹 프로젝트 구현
+ - DB & 웹 기능 설계
+ - DB 설계 ( MEMBER Table)
+ - 화면 틀 구현 (index.jsp, web.xml 설정) 
+    메인 페이지의 틀, 기본 구조 구성 작업
+     Ex) views, resources/css, js, images 등 생성
+    ** 경로 : ../ : 현재 파일 위의 경로
+             ./ , 폴더명으로 시작 : 현재 폴더 기준
+             / : 절대 경로가 기준
+
+화면 > 서블릿 (+VO) > 서비스 > DAO >.. DB
+DB ..> DAO 결과 확인 > 서비스 결과 확인 > 서블릿 결과 확인
+> 성공, 실패 결과 화면 구현
+
+ - 서블릿 구현 (화면 경로와 연결)
+   - 서비스 호출
+   패키지 경로 : 회사형태(com/org/gov/ngo)
+             .기업명(naver/samsung)
+             .프로젝트명(jdbc/first)
+             .기능명(member/admin/search)
+             .기능역할명(controller/model/전용filter)
+             .Servlet / .dao/ .vo/ .service
+  - 관련 서비스 구현
+    - DAO 호출
+  - 관련 DAO 구현
+    - SQL을 사용하여 DB 접속

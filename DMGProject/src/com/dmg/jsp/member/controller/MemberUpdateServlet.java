@@ -26,7 +26,6 @@ public class MemberUpdateServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pwd = request.getParameter("userPwd");
-		int age = Integer.parseInt(request.getParameter("age"));
 		String email = request.getParameter("email");
 		String phone = request.getParameter("tel1")+"-"
 				+request.getParameter("tel2")+"-"+request.getParameter("tel3");
@@ -39,7 +38,6 @@ public class MemberUpdateServlet extends HttpServlet {
 		Member m = (Member)session.getAttribute("member");
 		
 		m.setUserPwd(pwd);
-		m.setAge(age);
 		m.setEmail(email);
 		m.setPhone(phone);
 		m.setAddress(address);

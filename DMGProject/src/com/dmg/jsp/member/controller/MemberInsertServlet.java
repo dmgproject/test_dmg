@@ -27,18 +27,14 @@ public class MemberInsertServlet extends HttpServlet {
 		String userId = request.getParameter("userId");				// ID
 		String userPwd = request.getParameter("userPwd");			// 비밀번호
 		String userName = request.getParameter("userName");			// 이름
-		String userNickName = request.getParameter("userNickName"); // 닉네임
-		String gender = request.getParameter("gender");				// 성별
-		int age = Integer.parseInt(request.getParameter("age"));	// 나이
+
 		String email = request.getParameter("email");				// 이메일 주소
-		String phone = request.getParameter("tel1")+"-"+			// 연락처
-				request.getParameter("tel2")+"-"+request.getParameter("tel3");
+		String phone = request.getParameter("tel1")+"-"+request.getParameter("tel2")+"-"+request.getParameter("tel3");
 		String address = request.getParameter("zipCode")+"/ "+		// 주소
 				request.getParameter("address1")+"/ "+request.getParameter("address2");
 				
-		Member m = new Member(userId,userPwd,userName,userNickName,
-				gender,age,email,phone,address);
-		
+		//Member m = new Member(userId,userPwd,userName,userNickName,gender,age,email,phone,address);
+		Member m = new Member(userId,userPwd,userName,email,phone,address);
 		System.out.println("회원 가입 toString : " + m);
 		
 

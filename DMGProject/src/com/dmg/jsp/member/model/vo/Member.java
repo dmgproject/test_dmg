@@ -6,13 +6,13 @@ import java.sql.Date;
 public class Member implements Serializable{
 
 	private static final long serialVersionUID = 100000L;
-
+	
 	private String userId; // 사용자 아이디
 	private String userPwd; // 사용자 비밀번호
 	private String userName; // 사용자 이름
-	private String userNickName; // 사용자 닉네임
-	private String gender; // 성별
-	private int age; // 나이
+	//private String userNickName; // 사용자 닉네임
+	//private String gender; // 성별
+	//private int age; // 나이
 	private String email; // 이메일
 	private String phone; // 연락처
 	private String address; // 주소
@@ -32,9 +32,27 @@ public class Member implements Serializable{
 		this.userPwd = userPwd;
 	}
 
+	
+
+	
+	public Member(String userId) {
+		super();
+		this.userId = userId;
+	}
 
 
+	public Member(String userId, String userPwd, String userName,
+			String email, String phone, String address) {
+		super();
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+	}
 
+	/*
 	// 회원가입 창에서 실제로 받을 변수들. status 와 enrollDate 제외
 	public Member(String userId, String userPwd, String userName, String userNickName, String gender, int age,
 			String email, String phone, String address) {
@@ -50,39 +68,42 @@ public class Member implements Serializable{
 		this.address = address;
 	}
 
+	 */
 	
-	// 모든 필드를 받는 생성자. 사용여부 x
-	public Member(String userId, String userPwd, String userName, String userNickName, String gender, int age,
-			String email, String phone, String address, Date enrollDate, String status) {
-		super();
-		this.userId = userId;
-		this.userPwd = userPwd;
-		this.userName = userName;
-		this.userNickName = userNickName;
-		this.gender = gender;
-		this.age = age;
-		this.email = email;
-		this.phone = phone;
-		this.address = address;
-		this.enrollDate = enrollDate;
-		this.status = status;
-	}
 
 
-
+	/*
 	@Override
 	public String toString() {
 		return "Member [userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName + ", userNickName="
 				+ userNickName + ", gender=" + gender + ", age=" + age + ", email=" + email + ", phone=" + phone
 				+ ", address=" + address + ", enrollDate=" + enrollDate + ", status=" + status + "]";
 	}
+	*/
+	
+	
 
+
+	public Member(String id, String email2, String email3) {
+		super();
+		this.userId = id;
+		this.userName = email2;
+		this.email = email3;
+	}
 
 
 	public String getUserId() {
 		return userId;
 	}
 
+
+
+	@Override
+	public String toString() {
+		return "Member [userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName + ", email=" + email
+				+ ", phone=" + phone + ", address=" + address + ", enrollDate=" + enrollDate + ", status=" + status
+				+ "]";
+	}
 
 
 	public void setUserId(String userId) {
@@ -114,7 +135,7 @@ public class Member implements Serializable{
 	}
 
 
-
+	/*
 	public String getUserNickName() {
 		return userNickName;
 	}
@@ -150,7 +171,7 @@ public class Member implements Serializable{
 	}
 
 
-
+	*/
 	public String getEmail() {
 		return email;
 	}

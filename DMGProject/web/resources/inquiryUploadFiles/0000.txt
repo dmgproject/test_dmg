@@ -1,0 +1,29 @@
+Context initContext = new InitialContext();
+DataSource ds = (DataSource)initContext.lookup("");
+->컨테이너를 context라고 부름
+	DataSource : 디비 연결할 설정 저장
+	initContext.lookup("") : 디비 연결할 주소
+	서버 시작시 web.xml읽고 settings읽고 
+
+
+meta-inf 이론파일(설정 위주로 저장되어있음)
+web-inf 실습파일 (웹을 실행할)
+
+Service : - Controller인 서블릿에서 전달한 정보를 업무 수행로직(비즈니스 로직)에
+	  따라 가공하여 DAO에게 전달하는 역할
+	- Service는 하나의 SQL을 담당하는 DAO 메소드들을더 큰 하나의 서비스라는 개념으로 
+	  묶어 처리하는 비즈니스 로직(업무 로직)을 담당하는 객체이다.
+	  따라서 DB의 트랜잭션에 대한 TCL(commit/rollback)처리를 직접 담당해야 한다.
+
+DAO : - Service 로부터 받은 정보를 실제 데이터베이스에 전달하여 CRUD를 수행하는 객체
+        - Properties : SQL을 별도로 보관하는 Properties 객체 생성하기
+
+Connection - DB와 연동 하기 위한것
+ResultSet - select한 결과를 담을때 씀 (select 결과는 객체로 나오기 때문에)
+
+-----------------------------------------------------------------------------------------------------------------
+connection dao에서 선언해서 쓰는것이 효율적이라고 생각하는데 
+service에서 commit/rollback 해야하므로 service에서 선언해서 dao로 보내고 마지막에 commit/rollback 
+후에 최종반납하기 위해서 service에서 선언하는것인가
+
+?가 없다고 해서 pstmt를 못쓰는 것인가?

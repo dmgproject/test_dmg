@@ -28,37 +28,44 @@ public class MemberDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession(false);
+		String userId = request.getParameter("userId");
+		String userId2 = ((Member)session.getAttribute("member")).getUserId();
+		String userPwd = request.getParameter("userPwd");
+		System.out.println(userId);
+		System.out.println(userId2);
+		System.out.println(userPwd);
 		
-		String userId = ((Member)session.getAttribute("member")).getUserId();
+		if (userId.equals(userId2)) {
+			MemberService ms = new MemberService();
+			PrintWriter out = response.getWriter();
+			try {
+				ms.deleteMember(userId, userPwd);
 
-		MemberService ms = new MemberService();
-		
-		try {
-			ms.deleteMember(userId);
-			
-			session.invalidate();
-			
+				session.invalidate();
+
+
+				out.println("<script>");
+				out.println("alert('" + "회원 탈퇴가 완료되었습니다." + "');");
+				out.println("location.href='index.jsp'");
+				out.println("</script>");
+				// response.sendRedirect("index.jsp");
+
+			} catch (MemberException e) {
+
+				out.println("<script>");
+				out.println("alert('" + "비밀번호를 확인해 주세요." + "');");
+				out.println("location.href='index.jsp'");
+				out.println("</script>");
+
+			}
+
+		} else {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('" +"회원 탈퇴가 완료되었습니다." + "');");
-			out.println("location.href='index.jsp'");
+			out.println("alert('" + "아이디를 확인해 주세요." + "');");
+			out.println("location.href='/DMG/views/member/update.jsp'");
 			out.println("</script>");
-			//response.sendRedirect("index.jsp");
-			
-			
-		} catch(MemberException e){
-			
-			request.setAttribute("msg", "회원 탈퇴 중 에러 발생!!");
-			
-			request.setAttribute("exception", e);
-			
-			// 수정 요망
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-			
-			
 		}
-		
-		
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
